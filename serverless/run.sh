@@ -16,3 +16,5 @@ for ((i = 1; i <= repeat_num; ++i)); do
     run $fn_name $i &
   done
 done
+
+wait
