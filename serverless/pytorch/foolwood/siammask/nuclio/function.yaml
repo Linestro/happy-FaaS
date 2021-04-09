@@ -35,6 +35,8 @@ spec:
         - kind: RUN
           value: conda install -y gcc_linux-64
         - kind: RUN
+          value: conda install -y pillow
+        - kind: RUN
           value: cd SiamMask && bash make.sh && cd -
         - kind: RUN
           value: wget -P SiamMask/experiments/siammask_sharp http://www.robots.ox.ac.uk/~qwang/SiamMask_DAVIS.pth

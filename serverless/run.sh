@@ -1,5 +1,10 @@
 #!/bin/bash
-fn_names=("tf-faster-rcnn-inception-v2-coco" "tf-matterport-mask-rcnn")
+fn_names=(
+  "tf-faster-rcnn-inception-v2-coco"
+  "tf-matterport-mask-rcnn"
+  "torch-alexnet"
+  "torch-vgg"
+)
 
 repeat_num=$1
 

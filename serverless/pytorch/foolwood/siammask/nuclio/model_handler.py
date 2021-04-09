@@ -48,7 +48,8 @@ class ModelHandler:
     def infer(self, image, shape, state):
         image = np.array(image)
         if state is None: # init tracking
-            xtl, ytl, xbr, ybr = shape
+            # xtl, ytl, xbr, ybr = shape
+            xtl, ytl, xbr, ybr = [0,0,1,1]
             target_pos = np.array([(xtl + xbr) / 2, (ytl + ybr) / 2])
             target_sz = np.array([xbr - xtl, ybr - ytl])
             siammask = copy(self.siammask) # don't modify self.siammask

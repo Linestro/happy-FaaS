@@ -1,0 +1,52 @@
+metadata:
+  name: pth-vgg
+  namespace: cvat
+  annotations:
+    name: vgg16
+    type: interactor
+    spec:
+    framework: pytorch
+    min_pos_points: 1
+
+spec:
+  description: vgg16 interactive segmentation
+  runtime: 'python:3.6'
+  handler: main:handler
+  eventTimeout: 30s
+  env:
+    - name: PYTHONPATH
+      value: /opt/nuclio/vgg16
+
+  build:
+    image: cvat/pth.vgg.vgg16
+    baseImage: pytorch/pytorch:1.6.0-cuda10.1-cudnn7-devel
+
+    directives:
+      preCopy:
+        - kind: WORKDIR
+          value: /opt/nuclio
+        - kind: WORKDIR
+          value: /opt/nuclio/vgg16
+        - kind: ENV
+          value: fileid=1Z9dQtpWVTobEdmUBntpUU0pJl-pEXUwR
+        - kind: ENV
+          value: filename=resnet101_dh256_sbd.pth
+        - kind: RUN
+          value: apt update && apt install -y libgl1-mesa-glx
+        - kind: WORKDIR
+          value: /opt/nuclio
+
+  triggers:
+    myHttpTrigger:
+      maxWorkers: 2
+      kind: 'http'
+      workerAvailabilityTimeoutMilliseconds: 10000
+      attributes:
+        maxRequestBodySize: 33554432 # 32MB
+
+  platform:
+    attributes:
+      restartPolicy:
+        name: always
+        maximumRetryCount: 3
+      mountMode: volume

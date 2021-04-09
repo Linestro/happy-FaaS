@@ -19,8 +19,8 @@ def init_context(context):
 def handler(context, event):
     context.logger.info("call handler")
     data = event.body
-    pos_points = data["pos_points"]
-    neg_points = data["neg_points"]
+    pos_points = [[0,0], [1,1], [2,2], [3,3], [4,4]]# data["pos_points"]
+    neg_points = [[10,10], [11,11], [12,12], [13,13], [14,14]]# data["neg_points"]
     threshold = data.get("threshold", 0.5)
     buf = io.BytesIO(base64.b64decode(data["image"].encode('utf-8')))
     image = Image.open(buf)

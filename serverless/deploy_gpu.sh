@@ -24,6 +24,39 @@ elif [ "$1" = 'tf-matterport-mask-rcnn' ]; then
     --image cvat/tf.matterport.mask_rcnn_gpu --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
     --resource-limit nvidia.com/gpu=1 --verbose
 
+elif [ "$1" = 'torch-alexnet' ]; then
+nuctl deploy $fn_name --project-name cvat \
+    --path "$SCRIPT_DIR/pytorch/simple/sim/nuclio" \
+    --platform local --base-image pytorch/pytorch:1.6.0-cuda10.1-cudnn7-devel \
+    --desc "Test pytorch functions alexnet" \
+    --image cvat/pth.simple.sim \
+    --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
+    --resource-limit nvidia.com/gpu=1 --verbose
+
+elif [ "$1" = 'torch-vgg' ]; then
+nuctl deploy $fn_name --project-name cvat \
+    --path "$SCRIPT_DIR/pytorch/vgg/vgg16/nuclio" \
+    --platform local --base-image pytorch/pytorch:1.6.0-cuda10.1-cudnn7-devel \
+    --desc "Test pytorch functions vgg16" \
+    --image cvat/pth.vgg.vgg16 \
+    --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
+    --resource-limit nvidia.com/gpu=1 --verbose
+
 fi
+# nuctl deploy --project-name cvat \
+#     --path "$SCRIPT_DIR/pytorch/saic-vul/fbrs/nuclio" \
+#     --platform local --base-image pytorch/pytorch:1.6.0-cuda10.1-cudnn7-devel \
+#     --desc "Test pytorch functions foolwood" \
+#     --image cvat/pth.foolwood.siammask \
+#     --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
+#     --resource-limit nvidia.com/gpu=1 --verbose
+
+# nuctl deploy --project-name cvat \
+#     --path "$SCRIPT_DIR/pytorch/foolwood/siammask/nuclio" \
+#     --platform local --base-image pytorch/pytorch:1.6.0-cuda10.1-cudnn7-devel \
+#     --desc "Test pytorch functions foolwood" \
+#     --image cvat/pth.foolwood.siammask \
+#     --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
+#     --resource-limit nvidia.com/gpu=1 --verbose
 
 nuctl get function
