@@ -14,7 +14,7 @@ if [ "$1" = "tf-faster-rcnn-inception-v2-coco" ]; then
     --desc "GPU based Faster RCNN from Tensorflow Object Detection API" \
     --image cvat/tf.faster_rcnn_inception_v2_coco_gpu \
     --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
-    --resource-limit nvidia.com/gpu=1 --verbose
+    --resource-limit nvidia.com/gpu=1 # --verbose
 
 elif [ "$1" = 'tf-matterport-mask-rcnn' ]; then
   nuctl deploy $fn_name --project-name cvat \
@@ -22,7 +22,7 @@ elif [ "$1" = 'tf-matterport-mask-rcnn' ]; then
     --platform local --base-image tensorflow/tensorflow:1.15.5-gpu-py3 \
     --desc "GPU based implementation of Mask RCNN on Python 3, Keras, and TensorFlow." \
     --image cvat/tf.matterport.mask_rcnn_gpu --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
-    --resource-limit nvidia.com/gpu=1 --verbose
+    --resource-limit nvidia.com/gpu=1 # --verbose
 
 elif [ "$1" = 'torch-alexnet' ]; then
 nuctl deploy $fn_name --project-name cvat \
@@ -31,7 +31,7 @@ nuctl deploy $fn_name --project-name cvat \
     --desc "Test pytorch functions alexnet" \
     --image cvat/pth.simple.sim \
     --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
-    --resource-limit nvidia.com/gpu=1 --verbose
+    --resource-limit nvidia.com/gpu=1 # --verbose
 
 elif [ "$1" = 'torch-vgg' ]; then
 nuctl deploy $fn_name --project-name cvat \
@@ -40,7 +40,7 @@ nuctl deploy $fn_name --project-name cvat \
     --desc "Test pytorch functions vgg16" \
     --image cvat/pth.vgg.vgg16 \
     --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
-    --resource-limit nvidia.com/gpu=1 --verbose
+    --resource-limit nvidia.com/gpu=1 # --verbose
 
 fi
 # nuctl deploy --project-name cvat \
@@ -59,4 +59,4 @@ fi
 #     --triggers '{"myHttpTrigger": {"maxWorkers": 1}}' \
 #     --resource-limit nvidia.com/gpu=1 --verbose
 
-nuctl get function
+# nuctl get function
