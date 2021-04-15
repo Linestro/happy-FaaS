@@ -17,8 +17,6 @@ def run():
     for root, subdirs, files in os.walk('thruput'):
         for file in files:
             if not file.endswith(".txt"): continue
-            if not os.path.exists(os.path.join('processed', root)):
-                os.makedirs(os.path.join('processed', root))
             process(os.path.join(root, file))
 
     os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c thruput.gnu"""
@@ -41,8 +39,6 @@ def run():
     for root, subdirs, files in os.walk('batch'):
         for file in files:
             if not file.endswith(".txt"): continue
-            if not os.path.exists(os.path.join('processed', root)):
-                os.makedirs(os.path.join('processed', root))
             process(os.path.join(root, file))
 
     os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c batch.gnu"""
@@ -59,6 +55,21 @@ def run():
         .format('inception',
                 'Batch size of TF-coco under diff. latency SLO',
                 'Batch size (#images)'))
+
+    # Latency
+    os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c latency.gnu"""
+        .format('alex',
+                'Latency of AlexNet under diff. atch size',
+                'Latency (s)'))
+
+    os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c latency.gnu"""
+        .format('vgg',
+                'Latency of MobileNet-VGG under diff. Batch size',
+                'Latency (s)'))
+    os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c latency.gnu"""
+        .format('inception',
+                'Latency of TF-coco under diff. Batch size',
+                'Latency (s)'))
 
 
 run()
