@@ -26,7 +26,7 @@ def run():
 
     os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c thruput.gnu"""
         .format('vgg',
-                'Throughput of MobileNet-VGG under diff. latency SLO',
+                'Throughput of MobileNet-V2 under diff. latency SLO',
                 'Throughput (#images/s)'))
     
     os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c thruput.gnu"""
@@ -48,7 +48,7 @@ def run():
 
     os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c batch.gnu"""
         .format('vgg',
-                'Batch size of MobileNet-VGG under diff. latency SLO',
+                'Batch size of MobileNet-V2 under diff. latency SLO',
                 'Batch size (#images)'))
     
     os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c batch.gnu"""
@@ -64,7 +64,7 @@ def run():
 
     os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c latency.gnu"""
         .format('vgg',
-                'Latency of MobileNet-VGG under diff. Batch size',
+                'Latency of MobileNet-V2 under diff. Batch size',
                 'Latency (s)'))
     os.system("""gnuplot -e "fname='{}'" -e "plot_title='{}'" -e "y_title='{}'" -c latency.gnu"""
         .format('inception',
