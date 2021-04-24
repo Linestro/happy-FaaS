@@ -34,8 +34,9 @@ def run(walk_dir = 'vgg'):
             algo.append(file.split('.')[0])
             col.append(bar(os.path.join(root, file)))
     
-    m = max(col)
+    m = min(col)
     col /= m
+    col = [round(x, 2) for x in col]
     df = pd.DataFrame(data = {'x': algo, 'y': col})
     df.to_csv(os.path.join('processed', walk_dir, 'thruput', 'thruput.txt'), sep = '\t', index=False, header=False)
 
